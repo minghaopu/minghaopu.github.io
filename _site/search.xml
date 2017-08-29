@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+    <entry>
+      <title><![CDATA[Test Blog]]></title>
+      <url>/tutorial/test/cat3/2017/08/28/test-blog/</url>
+      <content type="html"><![CDATA[<h2 id="bookmark1">Bookmark1</h2>
+<h3 id="code-test">code test</h3>
+
+<div style="color:blue; width:300px; height:300px; background-color:red">test</div>
+
+<blockquote>
+  <p><code class="highlighter-rouge">javascript file</code></p>
+</blockquote>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34</pre></td><td class="code"><pre><span class="kd">var</span> <span class="nx">http</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'http'</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'express'</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">require</span><span class="p">(</span><span class="s1">'morgan'</span><span class="p">)(</span><span class="s1">'short'</span><span class="p">));</span>
+
+<span class="p">(</span><span class="kd">function</span> <span class="nx">initWebpack</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">webpack</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'webpack'</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">webpackConfig</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'./webpack.config'</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">compiler</span> <span class="o">=</span> <span class="nx">webpack</span><span class="p">(</span><span class="nx">webpackConfig</span><span class="p">);</span>
+
+  <span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">require</span><span class="p">(</span><span class="s1">'webpack-dev-middleware'</span><span class="p">)(</span><span class="nx">compiler</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">noInfo</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="na">publicPath</span><span class="p">:</span> <span class="nx">webpackConfig</span><span class="p">.</span><span class="nx">output</span><span class="p">.</span><span class="nx">publicPath</span>
+  <span class="p">}));</span>
+
+  <span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">require</span><span class="p">(</span><span class="s1">'webpack-hot-middleware'</span><span class="p">)(</span><span class="nx">compiler</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">log</span><span class="p">:</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">,</span> <span class="na">path</span><span class="p">:</span> <span class="s1">'/__webpack_hmr'</span><span class="p">,</span> <span class="na">heartbeat</span><span class="p">:</span> <span class="mi">10</span> <span class="o">*</span> <span class="mi">1000</span>
+  <span class="p">}));</span>
+<span class="p">})();</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">,</span> <span class="kd">function</span> <span class="nx">root</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">sendFile</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/index.html'</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nx">require</span><span class="p">.</span><span class="nx">main</span> <span class="o">===</span> <span class="nx">module</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">server</span> <span class="o">=</span> <span class="nx">http</span><span class="p">.</span><span class="nx">createServer</span><span class="p">(</span><span class="nx">app</span><span class="p">);</span>
+  <span class="nx">server</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">PORT</span> <span class="o">||</span> <span class="mi">3000</span><span class="p">,</span> <span class="kd">function</span> <span class="nx">onListen</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">address</span> <span class="o">=</span> <span class="nx">server</span><span class="p">.</span><span class="nx">address</span><span class="p">();</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Listening on: %j'</span><span class="p">,</span> <span class="nx">address</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">' -&gt; that probably means: http://localhost:%d'</span><span class="p">,</span> <span class="nx">address</span><span class="p">.</span><span class="nx">port</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">}</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure>
+
+<h2 id="bookmark2">Bookmark2</h2>
+
+<div class="language-yml highlighter-rouge"><pre class="highlight"><code><span class="s">language</span><span class="pi">:</span> <span class="s">en</span>
+
+</code></pre>
+</div>
+
+<blockquote>
+  <p>javascript file</p>
+</blockquote>
+
+<p>Set <code class="highlighter-rouge">rss</code> field in theme’s <code class="highlighter-rouge">_config.yml</code>, as the following value:</p>
+
+<ol>
+  <li><code class="highlighter-rouge">rss: false</code> will totally disable feed link.</li>
+  <li>
+    <p><code class="highlighter-rouge">rss:  </code> use sites’ feed link. This is the default option.</p>
+
+    <p>Follow the installation instruction in the plugin’s README. After the configuration is done for this plugin, the feed link is ready too.</p>
+  </li>
+  <li><code class="highlighter-rouge">rss: http://your-feed-url</code> set specific feed link.</li>
+</ol>
+]]></content>
+      <categories>
+        
+          <category> tutorial </category>
+        
+          <category> test </category>
+        
+          <category> cat3 </category>
+        
+      </categories>
+      <tags>
+        
+          <tag> tag1 </tag>
+        
+          <tag> tag2 </tag>
+        
+      </tags>
+      <tags></tags>
+    </entry>
+  
+</search>
